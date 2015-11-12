@@ -1,68 +1,72 @@
-# Networking Lessons
+# Apprendre le réseau
 
 ![Networked Raspberry Pi](images/pi-network.jpg)
 
-## Introduction
+## Présentation
 
-This scheme of work has been designed as an introduction to networking on the Raspberry Pi. Students will set up and use various networks, and will be introduced to basic networking through practical activities.
+Ce plan de travail a été conçu comme une introduction à l'utilisation du réseau avec le Raspberry Pi. Les élèves mettront en place et utiliseront différents réseaux, et découvriront les fonctions de base du réseau au travers d'activités pratiques.
 
-This scheme of work is specifically targeted towards KS3 and KS4 Computing, although the first two lessons could be used at KS2. It has been developed in the context of the 2014 National Curriculum in England, but is not specific to that programme.
+Ce plan de travail est spécifiquement destiné aux programmes (britanniques) KS3 et KS4, bien que les deux premières leçons puissent être utilisées pour KS2. Il a été développé dans le cadre du programme national 2014 en Angleterre, mais il n'est pas spécifique à ce programme.
 
-## Learning outcomes:
 
-Over the course of four lessons, students will learn:
+## Que vont apprendre les élèves ?
 
-- How to network two or more Raspberry Pis together
-- How to program a Raspberry Pi to send messages to another Pi
-- How to control hardware over a network
-- Network configuration and server set up
-- Basic networking concepts including:
-	- IP address
-	- Servers and clients
+Au cours des quatre leçons, les élèves apprendront :
+
+- Comment mettre en réseau deux ou plusieurs Raspberry Pis
+- Comment programmer un Raspberry Pi pour envoyer des messages à un autre Pi
+- Comment contrôler le matériel au travers d'un réseau
+- La configuration du réseau et le paramétrage des serveurs
+- Les concepts de base des réseaux, y compris:
+	-  L'adresse IP
+	- Clients et Serveurs
 	- DHCP
 	- DNS
 
-## Links to Computing Programme of Study
+
+## Liens avec le programme d'étude de l'informatique
 
 ### KS2:
 
-- Understand computer networks including the internet
+- Comprendre les réseaux informatiques, y compris Internet
 
 ### KS3:
 
-- Understand the hardware and software components that make up computer systems, and how they communicate with one another and with other systems.
+- Comprendre les composants matériels et logiciels qui constituent des systèmes informatiques, et la façon dont ils communiquent entre eux et avec les autres systèmes.
 
-The lessons use the Python programming language and therefore also address several programming aspects of the programme of study.
+Les leçons utilisent le langage de programmation Python et The lessons use the Python programming language et abordent donc plusieurs aspects du programme d'études liés à la programmation.
 
 [National Curriculum Computing Programmes of Study](https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study#key-stage-3)
 
-## Resources
+## Ressources
 
-It is suggested that work is carried out by students on a Raspberry Pi each or in pairs. Each Raspberry Pi will connect to one other Pi in the first lessons so you will need an even number. Each student or pair should have access to the following equipment:
+Il est suggéré que le travail soit effectué in dividuellement ou par binôme sur un Raspberry Pi. Chaque Raspberry Pi se connecte à un autre Pi dans les premières leçons et vous aurez besoin d'un nombre pair de rµaspberry Pi. Chaque élève ou binôme devrait avoir accès  suivant:
 
-- A Raspberry Pi with the following set up:
-  - The latest NOOBS SD card with Raspbian installed
-  - `network.py` and `thing-client.py` copied to the SD card
-  - A keyboard, mouse and monitor
-  - One network cable between two Raspberry Pis
-  - Four female-to-female header leads and one LED (lesson 2 only)
+- Un Raspberry Pi avec la configurartion suivante :
+  - Une carte SD avec la dernière version de NOOBS et Raspbian installé
+  - `network.py` et `thing-client.py` copiés sur la carte SD
+  - Un clavier, une souris et un écran
+  - Un câble réseau pour relier les deux Raspberry Pi
+  - Quatre connecteurs femelle-femelle et une LED (pour la leçon 2 uniquement)
 
-## Lessons
+## Leçons
 
-- [Lesson 1: How do computers communicate?](lesson-1/lesson.md)
-	- (Note that this lesson requires students to prepare by watching a video beforehand; this can be set as homework from the previous lesson or incorporated where appropriate).
-- [Lesson 2: The Internet of Things: How do computers control other computers?](lesson-2/lesson.md)
-- [Lesson 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/lesson.md)
-- [Lesson 4: Domain Name System (DNS)](lesson-4/lesson.md)
+- [Leçon 1: Comment communiquent les ordinateur?](lesson-1/lesson.md)
+	- (Notez que cette leçon nécessite que les élèves aient regardé une vidéo aupâravant; ceci peut être proposé comme travail à la maison à la suite de la leçon précédente ou proposé lorsque c'est nécessaire).
+- [Leçon 2: L'internet des objets: Comment les ordinateurs contrôlent d'autres ordinateurs?](lesson-2/lesson.md)
+- [Leçon 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/lesson.md)
+- [Leçon 4: Domain Name System (DNS)](lesson-4/lesson.md)
 
 ## Licence
 
-Unless otherwise specified, everything in this repository is covered by the following licence:
+Sauf spécification expresse, tout le contenu de ce répertoire est couvert par la license suivante:
 
 [![Creative Commons Attribution 4.0 International Licence](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
-***Networking Lessons*** by the [Raspberry Pi Foundation](http://www.raspberrypi.org) is licensed under a [Creative Commons Attribution 4.0 International Licence](http://creativecommons.org/licenses/by-sa/4.0/).
+***Apprendre le réseau*** par la [Raspberry Pi Foundation](http://www.raspberrypi.org) est sous licence [Creative Commons Attribution 4.0 International Licence](http://creativecommons.org/licenses/by-sa/4.0/).
 
-Based on a work at https://github.com/raspberrypilearning/networking-lessons
+D'après https://github.com/raspberrypilearning/networking-lessons
 
-Lessons 1 and 2 based on ideas and code by [David Whale](https://twitter.com/whaleygeek)
+Les leçons 1 et 2 sont basées sur des idées et du code de [David Whale](https://twitter.com/whaleygeek)
+
+Traduction [François MOCQ](http://www.framboise314.fr)
