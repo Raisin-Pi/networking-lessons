@@ -32,15 +32,15 @@ Au cours des quatre leçons, les élèves apprendront :
 
 ### KS3:
 
-- Comprendre les composants matériels et logiciels qui constituent des systèmes informatiques, et la façon dont ils communiquent entre eux et avec les autres systèmes.
+- Comprendre les composants matériels et logiciels qui constituent les systèmes informatiques, et la façon dont ils communiquent entre eux et avec les autres systèmes.
 
-Les leçons utilisent le langage de programmation Python et The lessons use the Python programming language et abordent donc plusieurs aspects du programme d'études liés à la programmation.
+Les leçons utilisent le langage de programmation Python et abordent donc plusieurs aspects du programme d'études liés à la programmation.
 
 [National Curriculum Computing Programmes of Study](https://www.gov.uk/government/publications/national-curriculum-in-england-computing-programmes-of-study/national-curriculum-in-england-computing-programmes-of-study#key-stage-3)
 
 ## Ressources
 
-Il est suggéré que le travail soit effectué in dividuellement ou par binôme sur un Raspberry Pi. Chaque Raspberry Pi se connecte à un autre Pi dans les premières leçons et vous aurez besoin d'un nombre pair de rµaspberry Pi. Chaque élève ou binôme devrait avoir accès  suivant:
+Il est suggéré que le travail soit effectué individuellement ou par binôme sur un Raspberry Pi. Chaque Raspberry Pi se connecte à un autre Pi dans les premières leçons et vous aurez besoin d'un nombre pair de Raspberry Pi. Chaque élève ou binôme devrait avoir accès au matériel suivant:
 
 - Un Raspberry Pi avec la configurartion suivante :
   - Une carte SD avec la dernière version de NOOBS et Raspbian installé
@@ -52,14 +52,14 @@ Il est suggéré que le travail soit effectué in dividuellement ou par binôme 
 ## Leçons
 
 - [Leçon 1: Comment communiquent les ordinateur?](lesson-1/lesson.md)
-	- (Notez que cette leçon nécessite que les élèves aient regardé une vidéo aupâravant; ceci peut être proposé comme travail à la maison à la suite de la leçon précédente ou proposé lorsque c'est nécessaire).
+	- (Notez que cette leçon nécessite que les élèves aient regardé une vidéo auparavant; ceci peut être proposé comme travail à la maison à la suite de la leçon précédente ou proposé en classe le moment venu).
 - [Leçon 2: L'internet des objets: Comment les ordinateurs contrôlent d'autres ordinateurs?](lesson-2/lesson.md)
 - [Leçon 3: Dynamic Host Configuration Protocol (DHCP)](lesson-3/lesson.md)
 - [Leçon 4: Domain Name System (DNS)](lesson-4/lesson.md)
 
 ## Licence
 
-Sauf spécification expresse, tout le contenu de ce répertoire est couvert par la license suivante:
+Sauf spécification expresse, tout le contenu de ce répertoire est couvert par la licence suivante:
 
 [![Creative Commons Attribution 4.0 International Licence](http://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -69,4 +69,4 @@ D'après https://github.com/raspberrypilearning/networking-lessons
 
 Les leçons 1 et 2 sont basées sur des idées et du code de [David Whale](https://twitter.com/whaleygeek)
 
-Traduction [François MOCQ](http://www.framboise314.fr)
+Traduction [François MOCQ](http://www.framboise314.fr "framboise314")
