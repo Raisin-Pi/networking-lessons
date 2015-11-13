@@ -1,69 +1,71 @@
-# Lesson 1 - How do computers communicate?
+# Leçon 1 - Comment les ordinateurs communiquent-ils ?
 
-In this lesson students will build a simple network and use it to communicate via a network chat program. The students will learn how to network two Raspberry Pis and then write a small program in Python that allows them to send messages to each other.
+https://www.raspberrypi.org/learning/networking-lessons/lesson-1/plan/
 
-If students are not confident with setting up the Raspberry Pi and editing and running Python programs, you might want to try a scheme of work such as the [Turing Test](https://www.raspberrypi.org/learning/turing-test-lessons/) first.
+Dans cette leçon, les élèves vont construire un réseau simple et l'utiliser pour communiquer via un programme de chat en réseau. Les élèves apprendront comment mettre en réseau deux Raspberry Pi et écriront ensuite écrire un petit programme en Python qui leur permettra d'envoyer de s’envoyer des messages les uns aux autres.
+Si les élèves ne sont pas à l'aise avec la configuration du Raspberry Pi et l'écriture et l'exécution des programmes Python, vous pouvez essayer de commencer par un exercice avec le
+ [Test de Turing](https://www.raspberrypi.org/learning/turing-test-lessons/).
 
-## Learning objectives
+## Objectifs de la leçon
 
-- Know that a computer network consists of two or more computers (or devices) connected together
-- Know that computers have an unique IP address that allows other computers to find them and send data to them
+- Savoir que d'un réseau informatique est constitué de deux ou plusieurs ordinateurs (ou périphériques) reliés entre eux
+- Savoir que les ordinateurs ont une adresse IP unique qui permet aux autres ordinateurs de les trouver et de leur envoyer des données
 
-## Learning outcomes
+## A l’issue de cette leçon
 
-### All students are able to:
+### Tous les élèves seront capables de :
 
-- Explain that a computer network is two or more computers joined together
-- Use a simple program to send messages between two computers
+- Expliquer qu'un réseau informatique est composé de deux (ou plusieurs) ordinateurs reliés entre eux
+- Utiliser un programme simple pour envoyer des messages entre deux ordinateurs
 
-### Most students are able to:
+### La plupart des élèves seront capables de:
 
-- Explain that every computer on a network needs a unique address called an IP address
-- Make simple changes to their program such as changing screen prompts and adding welcome messages
+- Expliquer que chaque ordinateur d’un réseau doit avoir une adresse unique appelée adresse IP
+- Apporter des modifications simples à leur programme (modification de l’invite affichée à l'écran, ajout de messages de bienvenue)
 
-### Some students are able to:
+### Certains élèves seront capables de :
 
-- Make more complex changes to their program such as sending responses to keywords
+- Apporter des modifications plus complexes à leur programme comme l'envoi de réponse en fonction de mots-clés
 
-## Lesson summary
+## Résumé de la leçon
 
-- An introduction to simple computer networks
-- Networking the Raspberry Pis
-- Writing the chat program
+- Une introduction aux réseaux informatiques simples
+- Mettre des Raspberry Pi en réseau
+- Ecriture d'un programme de chat
 
-## Homework
+## A faire à la maison
 
-In the **previous** lesson ask the students to watch [this video on basic networking](http://www.youtube.com/watch?v=kNJZ-v263zc). Then, they research and write down what they understand by the following terms: computer network, IP address, server, client, and LAN. They will need to understand these terms for this lesson, without their homework in front of them.
+Dans la leçon **précédente** il est demandé que les élèves regardent [cette vidéo sur les bases du réseau](http://www.youtube.com/watch?v=kNJZ-v263zc). Ensuite, ils effectuent des recherches et notent ce qu'ils entendent par les termes suivants : réseau informatique, adresse IP, serveur, client et LAN (réseau local). Pour cette leçon ils doivent connaître ces termes sans devoir relire leurs notes.
 
-## Starter
+## Introduction
 
-This starter is a quick-fire "ideas" round to introduce students to the ubiquity of networks and why they are useful or, in their eyes, essential!
+Cette introduction est un ensemble d'informations rapides pour initier les élèves à l'universalité des réseaux et leur faire comprendre pourquoi ils sont utiles ou, essentiels pour eux !
 
-1. Introduce the idea that computer networks are everywhere. In groups of two or three, ask the students to write down as many networked devices (or uses of networking) as they can in two minutes. Give them one or two examples to get them started.
+1. Introduire l'idée que les réseaux informatiques sont partout. En groupes de deux ou trois, demander aux élèves de noter le plus de périphériques réseau (ou d'utilisations du réseau) qu'ils peuvent en deux minutes. Donnez-leur un ou deux exemples pour les aider à démarrer.
 
-1. Ask the groups to circle any of the devices on their list that they have used since they got up this morning. They have one minute to do this.
+1. Demandez à chaque groupe d'encercler tous les périphériques, figurant sur leur liste, qu'ils ont utilisés, depuis qu'ils se sont levés ce matin. Ils ont une minute pour le faire.
 
-1. The group **touching** the most networked devices after 30 seconds wins; they are allowed to get devices from their bags, get out of their chairs and so on. **TIP:** This is particularly effective (and manic!) if you have a 30 second music clip and they have to freeze when the music stops.
+1. Le groupe qui a **touché** le plus de périphériques réseau en 30 secondes gagne; ils sont autorisés à sortir des appareils de leurs sacs, à se lever de leur chaise et ainsi de suite. **ASTUCE:** Ceci est particulièrement efficace (et frénétique !) si vous avez un morceau de musique qui dure 30 secondes et qu'ils doivent s'immobiliser lorsque la musique arrête.
 
-1. Ask each group for one device they have chosen and briefly discuss them. Add a few not so obvious ones such as bank ATMs and speed cameras. Emphasise that the modern world relies on computer networks and they will now build their own.
+1. Interrogez chaque groupe sur l'un des appareils qu'ils ont choisi et discutez-en avec eux brièvement. Ajoutez quelques exemples moins évidents comme les guichets automatiques des banques et les radars routiers. Insistez sur le fait que le monde actuel repose sur des réseaux informatiques et qu'ils vont maintenant construire leur propre réseau.
 
-## Main development
+## Développement principal
 
-The concepts that the students learned from the homework will be used and consolidated as they complete the tasks.
+Les concepts que les élèves ont appris dans le travail à faire à la maison seront utilisés et consolidés, lorsqu'ils réaliseront les travaux pratiques.
 
-1. Students should set up the network and send messages using the [Student Worksheet](worksheet.md).
+1. Les élèves doivent mettre en place le réseau et envoyer des messages à l'aide de la fiche de travaux pratiques.Students should set up the network and send messages using the [Fiche de Travaux Pratiques - Elève](worksheet.md).
 
-1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the student worksheet.
+1. **Facultatif**: Si vous réutilisez les cartes SD sur le réseau, les élèves devront annuler les modifications qu'ils ont faites précédemment dans le fichier `interfaces`. Demandez-leur de le faire en suivant la section «Nettoyage» de la feuille de travaux pratiques.
 
-## Plenary
+## Conclusion
 
-Write the following list of words on the board:
+Ecrire la liste suivante de mots au tableau :
 
-- Server
+- Serveur
 - Client
-- Computer network
-- IP address
-- Static IP address
+- Réseau informatique
+- Adresse IP
+- Adresse IP statique
 - LAN
 
-Select a student randomly from the class. They must select one of the words/terms from the board, stand up and point to someone else in the class who must then explain what the word means. That person then chooses the next person to explain one of the terms.
+Choisissez un élève au hasard dans la classe. Il doit sélectionner l'un des mots/termes au tableau, se lever et choisir quelqu'un d'autre dans la classe qui doit alors expliquer ce que signifie ce mot. Cette personne choisit alors la prochaine personne qui expliquera l'un des termes restant.

@@ -1,11 +1,11 @@
- Over the course of four lessons, students will learn:
+ Au cours des quatre leçons, les élèves apprendront :
 
-- How to network two or more Raspberry Pis together
-- How to program a Raspberry Pi to send messages to another Pi
-- How to control hardware over a network
-- Network configuration and server set up
-- Basic networking concepts including:
-	- IP address
-	- Servers and clients
+- Comment mettre en réseau deux ou plusieurs Raspberry Pis
+- Comment programmer un Raspberry Pi pour envoyer des messages à un autre Pi
+- Comment contrôler le matériel au travers d'un réseau
+- La configuration du réseau et le paramétrage des serveurs
+- •	Les concepts de base des réseaux, y compris:
+	- L'adresse IP
+	-	Clients et Serveurs
 	- DHCP
 	- DNS

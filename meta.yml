@@ -1,7 +1,7 @@
-title: Networking Lessons
-category: teach
-lessons:
-  1: How do computers communicate?
-  2: "The Internet of Things: How do computers control other computers?"
-  3: Dynamic Host Configuration Protocol (DHCP)
-  4: Domain Name System (DNS)
+title: Apprendre le réseau
+category: Enseignement
+leçons:
+  1: Comment les ordinateurs communiquent-ils?
+  2: "L’Internet des Objets : Comment les ordinateurs contrôlent-il contrôlent-ils d’autres ordinateurs?"
+  3: Protocole de configuration d’adresse dynamique (DHCP)
+  4: Système de nom de domaine (DNS)

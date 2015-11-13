@@ -1,11 +1,11 @@
-- name: 4 x Female-to-female header leads
+- name: 4 x Câble de liaison Femelle-Femelle
   img: jumper-female-to-female
   url: http://shop.pimoroni.com/products/jumper-jerky
-- name: 1 x push button
+- name: 1 x Bouton poussoir
   img: tactile-push-button
 - name: 1 x LED
   img: led
   url: http://shop.pimoroni.com/products/led-5mm-pack-of-10
-- name: 1 x Network cable for each pair of Raspberry Pis
+- name: 1 x Câble Ethernet pour chaque paire de Raspberry Pi
   img: ethernet-cable
   url: http://shop.pimoroni.com/products/cat5e-utp-ethernet-cable

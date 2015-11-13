@@ -1,22 +1,22 @@
-# Software installation
+# Installation des logiciels
 
-You'll need to be online to install packages.
+Il faudra être connecté à Internet pour installer les paquets.
 
-First update and upgrade your system. Enter the following commands into the terminal:
+Commencez par mettre à jour votre système. Entrez les commandes suivantes dans un terminal:
 
 ```bash
 sudo apt-get update
 sudo apt-get upgrade
 ```
 
-## Downloading network.py
+## Télécharger network.py
 
-1. After booting, log in using the default login `pi` and password `raspberry`.
+1. Après le démarrage, connectez vous en utilisant le login par défaut `pi` et le mote de passe `raspberry`.
 
-1. On the command line type:
-    
+1. En ligne de commande tapez:
+
     ```bash
     wget https://goo.gl/UJMdZh -O network.py --no-check-certificate
     ```
-    
-1. Type `ls` to check that the file has downloaded.
+
+1. Tapez ensuite `ls` pour vérifier que le fichier a bien été téléchargé.

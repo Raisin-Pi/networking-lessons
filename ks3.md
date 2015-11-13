@@ -1,1 +1,1 @@
-- Understand the hardware and software components that make up computer systems, and how they communicate with one another and with other systems.
+- Comprendre les composants matériels et logiciels qui constituent les systèmes informatiques, et la façon dont ils communiquent entre eux et avec les autres systèmes.

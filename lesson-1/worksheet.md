@@ -1,29 +1,28 @@
-# Setting up a chat network on two Raspberry Pis
+# Créer un réseau de chat avec deux Raspberry Pi
 
-## Student worksheet
+## Feuille de Travaux pratiques - Elève
 
-In this lesson, you will set up two Raspberry Pis to form a network, and use Python code to send messages between them. There are two steps this: configuring the network and writing the program.
+Dans cette leçon, vous allez mettre en place deux Raspberry Pi pour créer un réseau, et utiliser un programme en Python pour échanger des messages entre eux. Il y a deux étapes : configurer le réseau et écrire le programme.
 
-## Network configuration
+## Configuration du réseau
 
-Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis, we have to give each Pi its own IP address.
+Avant que les Raspberry Pi soient capables de communiquer, ils doivent être reliés entre eux via un réseau. Normalement, quand un appareil se connecte à un réseau, il se voit attribuer un identifiant unique appelé une adresse IP. Comme nous avons seulement deux Raspberry Pi, nous allons donner à chaque Raspberry Pi sa propre adresse IP.
 
-1. Follow the [static IP address setup guide](rpi-static-ip-address.md) to configure the IP address.
+1. Suivez le [guide de configuration de l'adresse IP statique](rpi-static-ip-address.md) pour configurer l'adresse IP.
 
-1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
+1. Répétez cette procédure avec l'autre Raspberry Pi, et donnez-lui l'adresse IP `192.168.0.3`.
+**Astuce :** Utilisez un post-it pour marquer physiquement l'adresse IP sur chacun des Raspberry Pi, sinon les choses vont devenir compliquées plus tard!
 
-**Tip:** Use a Post-it note to physically label the Raspberry Pis with their IP addresses, otherwise things will get confusing later!
+### Testez votre réseau
 
-### Testing your network
-
-1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.2`, type:
+1. Reliez les deux Raspberry Pi par un câble Ethernet
+1. Sur le Raspberry Pi qui a l'adresse IP se terminant par `.2`, tapez :
 
     ```bash
     ping 192.168.0.3 -c5
     ```
 
-You should see something like this:
+Vous devriez voir quelque chose comme ceci :
 
 ```
 PING 192.168.0.3 (192.168.0.3) 56(84) bytes of data.
@@ -35,21 +34,21 @@ PING 192.168.0.3 (192.168.0.3) 56(84) bytes of data.
 rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 ```
 
-If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked, you are ready to write the chat program.
+Sinon, vérifiez les modifications que vous avez faites dans le fichier interfaces ainsi que le branchement des câbles réseau (les LED sont-elles allumées ?). Une fois que les Raspberry Pi sont en réseau, vous êtes prêt à écrire le programme de chat.
 
-## Setting up the chat program
+## Mise en place du programme de chat
 
-1. Create a new file with the nano editor by typing `nano chat.py`.
-1. Type in the following program:
+1. Créez un nouveau fichier avec l'éditeur nano en tapant  `nano chat.py`.
+1. Tapez le programme suivant :
 
     ```python
-    # A simple internet-chat application
+    # Programme de chat simple
 
     import network
     import sys
 
     def heard(phrase):
-      print("them:" + phrase)
+      print("eux:" + phrase)
 
     if (len(sys.argv) >= 2):
       network.call(sys.argv[1], whenHearCall=heard)
@@ -57,48 +56,48 @@ If not, check your edits and the network cable. Once the Raspberry Pis are succe
       network.wait(whenHearCall=heard)
 
     while network.isConnected():
-      #phrase = raw_input() #python2
-      phrase = input() # python3
-      print("me:" + phrase)
+      #phrase = raw_input() # à utiliser en python2
+      phrase = input() # à utiliser en python3
+      print("moi:" + phrase)
       network.say(phrase)
     ```
 
-1. Save the file with `CTRL-O` and then exit nano with `CTRL-X`.
+1. Enregistrez le fichier avec `CTRL-O` puis quittez nano avec  `CTRL-X`.
 
-1. Set the first Pi up as a **server** by typing:
+1. Configurez le premier Raspberry Pi en **serveur** en tapant :
 
     ```bash
     python chat.py
     ```
 
-1. The second Pi will be the **client**. You need to tell it the IP address of the server that you want to connect to. For example, to connect to a Raspberry Pi that has the IP address ending in `.2.`, type:
+1. Le deuxième Raspberry Pi sera le **client**. Vous devez lui indiquer l'adresse IP du serveur auquel vous souhaitez vous connecter. Par exemple, pour se connecter à un Raspberry Pi qui a l'adresse IP se terminant par  `.2`, entrez :
 
     ```bash
     python chat.py 192.168.0.2
     ```
 
-1. You should now be able to type messages on either Pi, and they will appear on the other screen when you press the `enter` key.
+1. Vous devriez maintenant être en mesure de saisir des messages sur chacun des Raspberry Pi, et ils apparaîtront sur l'autre écran lorsque vous appuierez sur la touche `Entrée`.
 
-Try it! Send messages from the server to the client and vice versa.
+Essayez ! Envoyez des messages depuis le serveur vers le client et vice versa.
 
-### Things to think about when sending messages:
+### Réfléchissez à ce qui se passe lors de l'envoi des messages :
 
-- What is happening on screen?
-- What is physically happening to the messages when you press the `enter` key?
-- How do the messages know where to go?
+-	Que se passe-t-il à l'écran?
+-	Qu'arrive-t-il physiquement aux messages lorsque vous appuyez sur la touche entrée?
+-	Comment les messages savent-ils où ils doivent aller?
 
-### Things to try:
+### Les choses à essayer :
 
-- Can you break the program by sending messages too fast or at the same time?
-- What happens if you stop the server program by pressing `CTRL-C`?
-- Edit `chat.py` to change the 'me:' and 'them:' messages that appear to your own names.
+-	Pouvez-vous bloquer le programme en envoyant des messages trop vite ou en même temps?
+-	Que se passe-t-il si vous arrêtez le programme serveur en appuyant sur `CTRL-C`?
+-	Modifier `chat.py` pour remplacer les mots  'moi:' et 'eux:' par vos propres noms.
 
-## What next? 
+## Et après ?
 
-- Display a welcome message when your program starts.
-- Display a welcome message for your caller when they connect.
-- Display an increasing message counter for 'me:' and 'them:' on each message.
-- When you type in a certain letter or word, get the program to expand this to a whole sentence that is sent to your caller.
-- When the word "random" is typed, send one of a number of different random messages to your caller.
-- When certain words are received from your caller, automatically send a whole phrase back to them, with different phrases for different words.
-- If the teacher asks you to, change the network configuration back to a dynamic IP address as shown in the "Clean up" section of [static IP address setup guide](rpi-static-ip-address.md).
+- Affichez un message de bienvenue lorsque votre programme démarre.
+- Affichez un message de bienvenue sur l'écran de l'appelant quand il se connecte.
+- Affichez un compteur de messages avant "moi:" et "eux:" à chaque message.
+- Lorsque vous tapez une certaine lettre ou un mot choisi, modifiez le programme pour qu'il envoie une phrase entière à votre interlocuteur.
+- Lorsque le mot «aléatoire» est tapé, envoyez un nombre de messages aléatoires différents à votre interlocuteur.
+- Lorsque vous recevez certains mots de votre appelant, envoyez automatiquement une phrase entière vers celui-ci (une phrase différente pour les différents mots).
+- Si l'enseignant vous le demande, modifiez la configuration du réseau pour revenir à une adresse IP dynamique, comme indiqué dans la section «Nettoyer» du [Guide de configuration de l'adresse IP statique](rpi-static-ip-address.md).

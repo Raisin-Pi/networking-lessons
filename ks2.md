@@ -1,1 +1,1 @@
-- Understand computer networks including the internet
+- Comprendre les réseaux informatiques, y compris Internet
