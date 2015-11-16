@@ -1,56 +1,53 @@
-# Lesson 2 - The Internet of Things: how do computers control other computers?
+# Leçon 2 - L'Internet des objets: comment les ordinateurs contrôlent d'autres ordinateurs?
 
-By 2020 it is estimated that there will be [50 billion things](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342) connected to the internet, from cows to fridges to cars. This is known as the Internet of Things. In this lesson students will build the simplest Thing - a button that lights an LED across a network.
+En 2020, on estime qu'il y aura [50 milliards d'objets](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342) connectés à Internet, depuis les vaches jusqu'aux réfrigérateurs et aux voitures. C'est ce qu'on, nomme l'Internet des Objets. Dans cette leçon, les élèves vont construire l'Objet le plus simple - un bouton qui allume une LED via le réseau.
 
-Students will be aware of how widespread and important networks are from lesson 1. They should be comfortable with terms used in that lesson, such as IP address, server, and client. The plenary could be used as a refresher.
+Les élèves seront conscients de l'importance et de la généralisation des réseaux suite à la leçon 1. Ils devraient être à l'aise avec les termes utilisés dans cette leçon, comme adresse IP, serveur et client. La conclusion de la leçon 1 pourra être utilisée comme révision pour commencer cette leçon 2.
 
-## Learning objectives
+## Objectifs de la leçon
 
-- Know that a computer server can send data to another computer on a network
-- Know that data received over a network can cause something to happen on the client computer beyond displaying a screen message
+- Savoir qu'un serveur informatique peut envoyer des données à un autre ordinateur sur un réseau
+- Savoir que les données reçues via un réseau peuvent déclencher sur l'ordinateur client une action allant au-delà du simple affichage d'un message à l'écran
 
-## Learning outcomes
 
-### All students are able to:
+## A l’issue de cette leçon
 
-- Explain that computers on a network can send data to each other, and that this data can make the receiving computer do something
-- Use a simple program to control hardware across a network
+### Tous les élèves seront capables de :
 
-### Most students are able to:
+- Expliquer que les ordinateurs d'un réseau peuvent s'échanger des données, et que ces données peuvent déclencher une action sur l'ordinateur récepteur
+- Utiliser un programme simple pour contrôler le matériel au travers d'un réseau
 
-- Hack a program to make it do something usefully different
 
-### Some students are able to:
+### La plupart des élèves seront capables de:
 
-- Adapt a program to make a Raspberry Pi control hardware on another Pi to behave in a specific way
+- Modifier un programme pour lui faire faire quelque chose de différent et d'utile
 
-## Lesson summary
+### Certains élèves seront capables de :
+- Adapter un programme pour qu'un Raspberry Pi oblige le matériel connecté à un autre Raspberry Pi à se comporter d'une manière spécifique
 
-- Introduction to physical, networked computing
-- Extends Lesson 1: controls hardware on the client machine instead of screen messaging
-- Control another Raspberry Pi's GPIO pins over a network
 
-## Starter
+## Résumé de la leçon
+- Introduction à l'informatique connectée par un réseau physique
+- Suite de la Leçon 1: contrôle du matériel sur la machine cliente au lieu d'afficher un message
+- Contrôler les broches GPIO d'un autre Raspberry Pi via le réseau
 
-This can be done on paper or as drag and drop on an interactive whiteboard.
 
-1. Students have one minute to rearrange the Python code on the [code review](code-review.md) into the correct order.
-1. Show the program running. Discuss what goes where and why, e.g. importing modules, functions, while loops etc.
-1. Show video of PA's [Raspberry Pi competition](https://www.youtube.com/watch?v=x_-ngDlclw0) for schools and explain that all of the projects rely on a server controlling some physical aspect of a Raspberry Pi e.g. sensors, displays, pumps, camera etc.
+## Introduction
+Cela peut être fait sur papier ou par glisser-déposer sur un tableau interactif.
+1. Les élèves ont une minute pour réorganiser le code Python de [code review](code-review.md) et le remettre dans le bon ordre.
+1. Montrez le programme en fonctionnement. Discutez de ce qui se passe et pourquoi cela est fait, par exemple l'importation des modules, des fonctions, les boucles while, etc.
+1. Montrez la vidéo du concours Raspberry Pi de PA Consulting Group pour les écoles et expliquez que tous les projets reposent sur un serveur qui contrôle un aspect physique d'un Raspberry Pi par exemple des capteurs, des afficheurs, des pompes, une caméra etc.
 
-## Main development
+## Développement principal
+1.	Expliquez que les étudiants devront connecter deux Raspberry Pi comme dans la leçon 1, mais cette fois ils vont contrôler du matériel au lieu d'envoyer le texte à l'écran.
+1.	Les élèves doivent configurer le réseau et contrôler les LED sur un autre Raspberry Pi en utilisant la [Feuille de Travaux Pratiques](worksheet.md).
+1.	Idées d'extension : ajouter des messages d'écran pour la rétroaction, changer la façon dont les LED clignotent, changer le bouton physique (par exemple, par un "détecteur de pression" fait avec de le feuille d'aluminium), ajouter une autre LED (avancé).
+1.	**Facultatif**: Si vous réutilisez les cartes SD sur le réseau, les élèves devront annuler leurs modifications dans le fichier `interfaces`. Demandez-leur de le faire comme indiqué dans la section «Nettoyer» du guide de configuration de l'adresse IP statique disponible dans la leçon précédente.
 
-1. Explain that the students will connect two Raspberry Pis in a similar way to lesson 1, but this time they will control hardware instead of sending text.
-1. Students should set up the network and control LEDs on another Pi using the [Student Worksheet](worksheet.md).
-1. Extension ideas: add screen messages for feedback, change how the LED flashes, change the physical button (e.g. a "pressure pad" made out of foil), add another LED (advanced).
-1. **Optional**: If you will be using the SD cards again on a network, students will need to undo their changes to the `interfaces` file. Ask them to do this as per the 'Cleanup' section of the Static IP address guide given in the previous lesson.
+## Conclusion
+Demandez à chaque groupe de se lever et expliquer les changements qu'ils ont fait à leur programme et comment ils l'ont fait. Affichez leur code sur l'écran si vous en avez la possibilité, et demandez-leur d'expliquer la logique et la syntaxe de leurs modifications.
 
-## Plenary
-
-Ask each group to stand up and explain what changes they made to their program and how they did it. Display their code on screen if you have the capability, and ask them to explain the logic and any syntax of their hacks.
-
-## Homework
-
-1. Show students the source of the "[50 billion things](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342)" quotation.
-1. Ask them to research and prepare a speed talk (1 minute) for next lesson, either arguing that the IoT is a good thing or a bad thing (no fence sitting!). If they want to use slides they should be pictures only, no words.
-1. Next lesson pick several at "random" to stand up and give their talk, giving equal time to each side of the argument. The class votes on which wins.
+## A faire à la maison
+1.	Montrez aux élèves la source de la citation [50 milliards d'Objets](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342)".
+1.	Demandez-leur de faire une recherche et de préparer un exposé rapide (1 minute) pour la prochaine leçon, montrant soit que l'IdO est une bonne chose soit qu'il est une mauvaise chose (pas de réponse mitigée). S'ils veulent réaliser une présentation avec des diapositives ils ne pourront employer que des images, pas de mots.
+1.	Lors de la prochaine leçon choisissez plusieurs élèves au hasard, demandez leur de se lever et donnez leur la parole, chacun disposera d'un temps égal pour présenter ses arguments. Les votes de la classe désigneront le vainqueur.
