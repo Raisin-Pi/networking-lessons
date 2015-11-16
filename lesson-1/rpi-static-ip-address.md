@@ -1,24 +1,23 @@
-# How to set up up your Raspberry Pi to have a static IP address
+# Comment configurer votre Raspberry Pi pour avoir une adresse IP statique
 
-Usually when you connect a Raspberry Pi to a Local Area Network (LAN) it is automatically assigned an IP address. Typically, this address will change each time you connect.
+Habituellement, lorsque vous connectez un Raspberry Pi à un réseau local (LAN), une adresse IP lui est attribuée automatiquement. Normalement, cette adresse change à chaque fois que vous vous connectez.
 
-Sometimes, however, you might want your Pi to boot up with the same IP address each time. This can be useful if you are making a small self contained network, or building a standalone project such as a robot. Here's how to do it.
-
+Parfois, cependant, vous pouvez souhaiter que votre Raspberry Pi démarre toujours avec la même adresse IP. Cela peut être utile si vous créez un petit réseau autonome, ou un projet autonome comme un robot. Voici comment procéder.
 ## Setup
 
-Edit the file `/etc/network/interfaces` as follows:
+Editez le fichier `/etc/network/interfaces` comme ceci:
 
-1. Type `sudo nano /etc/network/interfaces` at the command prompt.
+1. Tapez `sudo nano /etc/network/interfaces` en ligne de commande.
 
-1. Look for the line:
+1. Recherchez cette ligne:
 
     ```bash
     iface eth0 inet dhcp
     ```
 
-1. Change the word `dhcp` to `static`.
+1. Remplacez le mot `dhcp` par `static`.
 
-1. Press `Enter` and add the following lines:
+1. Appuyez sur la touche `Entrée` et ajoutez les lignes suivantes:
 
     ```
     address 192.168.0.2
@@ -28,45 +27,46 @@ Edit the file `/etc/network/interfaces` as follows:
     gateway 192.168.0.1
     ```
 
-1. Save the file with `CTRL + O` and then exit nano with `CTRL + X`.
+1. Enregistrez le fichier avec `CTRL + O` puis quittez nano avec `CTRL + X`.
 
-Your Raspberry Pi will now boot up with the IP address `192.168.0.2` every time; we didn't use `192.168.0.1` as this is reserved for the router. You can of course use any address you like, but in the configuration above the range must be between `192.168.0.2` and `192.168.0.255`.
+A chaque démarrage votre Raspberry Pi prendra l'adresse IP `192.168.0.2`; nous n'avons pas utilisé `192.168.0.1` qui est l'adresse réservée pour le routeur. Vous pouvez bien entendu utiliser l'adresse de votre choix, mais elle devra être comprise entre `192.168.0.2` et `192.168.0.255`.
 
-## Testing
+## Tests
 
-1. Reboot with `sudo reboot`.
+1. Redémarrez le Raspberry Pi avec la commande `sudo reboot`.
 
-1. Log in and type `ip a`.
+1. Loguez vous et tapez `ip a`.
 
-1. You should see the IP address you set in the `eth0:` entry.
+1. Vous devriez voir l'adresse IP que vous avez choisie, dans la rubrique `eth0:`.
 
-## Troubleshooting
+## Dépannage
 
-If your Pi is not networked then the IP address may not show. To fix this, connect your Pi to an active network socket, which can be on another running Raspberry Pi; you can also manually bring up (activate) the network interface by typing `sudo ifup eth0` followed by `ip a`.
 
-If you still cannot see your IP address, or it is different to the one you set, then open the `interfaces` file, as described in step 1 of the setup instructions, and check that your edits are correct.
+Si votre Raspberry Pi n'est pas en réseau, vous ne verrez pas l'adresse IP. Pour résoudre ce problème, connectez votre Raspberry Pi à une prise réseau active, ce peut être un autre Raspberry Pi qui fonctionne; vous pouvez également activer manuellement l'interface réseau en tapant `sudo ifup eth0` suivi par`ip a`.
 
-## Clean up - reverting the changes
+Si vous ne voyez toujours pas votre adresse IP, ou si elle est différente de celle que vous avez définie, ouvrez le fichier `interfaces`, comme décrit à l'étape 1 des instructions d'installation, et vérifiez l'exactitude de vos modifications.
 
-Normally you don't want your computer set to use a static IP address. You can change the network configuration back by editing the `interfaces` file as follows:
+## Nettoyer - annuler les modifications
 
-1. Type `sudo nano /etc/network/interfaces` at the command prompt.
+Normalement, votre ordinateur n'est pas configuré pour utiliser une adresse IP statique. Vous pouvez remettre la configuration réseau d'origine en éditant le fichier `interfaces` comme suit:
 
-1. Look for the line:
+1. Tapez `sudo nano /etc/network/interfaces` en ligne de commande.
+
+1. Recherchez la ligne:
 
     ```
     iface eth0 inet static
     ```
 
-1. Change the word `static` to `dhcp`.
+1. Remplacez le mot `static` par `dhcp`.
 
-1. Comment out the following lines by putting a `#` in front (you can delete them entirely but you may want them again later):
+1. Mettez en commentaire les lignes ci-dessous en plaçant un `#` au début de la ligne (vous pourriez les détruire complètement mais vous pourrez en avoir besoin ultérieurement):
 
     ```
-    #address 192.168.0.2
-    #netmask 255.255.255.0
-    #network 192.168.0.0
-    #broadcast 192.168.0.255
-    #gateway 192.168.0.1
+#address 192.168.0.2
+#netmask 255.255.255.0
+#network 192.168.0.0
+#broadcast 192.168.0.255
+#gateway 192.168.0.1
     ```
-1. Save the file with `CTRL + O`, exit nano with `CTRL + X`  and then reboot with `sudo reboot'.
+1. Enregistrez le fichier avec `CTRL + O`, quittez nano avec `CTRL + X`  puis redémarrez avec `sudo reboot`.
