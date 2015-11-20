@@ -1,44 +1,44 @@
-# Controlling physical devices across a network on two Raspberry Pis
+# Contrôler des systèmes physiques via le réseau avec deux Raspberry Pi
 
-There are three steps to setting up the Raspberry Pis so one can control the other: configuring the network, writing the server program, and setting up the hardware.
+Il y a trois étapes à réaliser pour configurer les Raspberry Pi pour que l'un puisse contrôler l'autre: configurer le réseau, écrire le programme du serveur, enfin configurer le matériel.
 
-## Network configuration
+## Configuration du réseau
 
-Before the Raspberry Pis can communicate they need to be connected together via a network. Normally, when a device connects to a network, it is assigned a unique identifier called an IP address. As we only have two Raspberry Pis we have to give each Pi its own IP address.
+Avant que les Raspberry Pi puissent communiquer, il doivent être reliés l'un à l'autre au travers d'un réseau. Normalement lorsque vous connectez un appareil au réseau, il reçoit un identifiant unique appelé adresse IP. Comme le système ne comporte que deux Raspberry Pi, nous allons attribuer à chacun d'eux sa propre adresse IP.
 
-1. Follow the [Static IP address setup guide](/lesson-1/rpi-static-ip-address.md) from lesson 1 to configure the IP address.
+1. Suivez le [Guide de configuration d'une adresse IP statique](/lesson-1/rpi-static-ip-address.md) de la leçon 1 pour configurer l'adresse IP d'un des Raspberry Pi.
 
-1. Repeat this procedure with your other Pi, giving this one the IP address `192.168.0.3`.
+1. Répétez la procédure sur l'autre Raspberry Pi, et donnez lui l'adresse IP `192.168.0.3`.
 
-**Tip:** Use a Post-it note to physically label the Raspberry Pis with their IP addresses otherwise things will get confusing later!
+**Astuce:** Utilisez des post-it pour afficher l'adresse de chaque Raspberry Pi sinon les choses peuvent devenir compliquées par la suite!
 
-### Testing your network
+### Tester votre réseau
 
-1. Connect the two Pis with an Ethernet cable
-1. On the Pi that has the IP address ending `.2`, type:
+1. Reliez les deux Raspberry Pi par un c^cble Ethernet
+1. Sur le Raspberry Pi dont l'adresse se termine par `.2`, tapez:
 
     ```bash
     ping 192.168.0.3 -c5
     ```
 
-You should see something like this:
+Vous devriez lire quelque chose comme ceci:
 
 ```
 PING 192.168.0.3 (192.168.0.3) 56(84) bytes of data.
 64 bytes from 192.168.0.3: icmp_req=1 ttl=128 time=3.46 ms
-[...four more PINGs ...]
+[...quatre autres PINGs ...]
 
 --- 192.168.0.3 ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 4007ms
 rtt min/avg/max/mdev = 3.466/3.788/4.380/0.322 ms
 ```
 
-If not, check your edits and the network cable. Once the Raspberry Pis are successfully networked you are ready to write the control program.
+Si ce n'est pas le cas, vérifiez vos modifications ainsi que le câble réseau. Une fois que les Raspberry Pi fonctionnent en réseau vous êtes prêt à écrire le programme de contrôle.
 
-## Setting up the control program
+## Configuration du programme de contrôle
 
-1. Create a new file with the nano editor by typing `nano thing-server.py`.
-1. Type in the following program:
+1. Créez un nouveau fichier avec l'éditeur nano en tapant `nano thing-server.py`.
+1. Saisissez le programme suivant:
 
     ```python
     import RPi.GPIO as GPIO

@@ -1,127 +1,124 @@
-# Lesson 3 - Dynamic Host Configuration Protocol (DHCP)
+# Leçon 3 - Protocole de configuration dynamique de l'hôte (DHCP)
+#### Dynamic Host Configuration Protocol
 
-In this lesson, students will learn how the Raspberry Pi can be used to demonstrate Dynamic Host Configuration Protocol on an isolated network.
+Dans cette leçon, les élèves apprendront comment le Raspberry Pi peut être utilisé pour montrer le fonctionnement du DHCP sur un réseau isolé.
 
-By now it will be clear that repeatedly changing the `/etc/network/interfaces` file is time-consuming and laborious. There are a number of disadvantages to giving static IP addresses to all computers on the network. Consider what would happen when you want to add even more computers to your network.
+Maintenant, il devrait être clair que la modification répétée du fichier `/etc/network/interfaces` est longue et fastidieuse. Il ya un certain nombre d'inconvénients à donner des adresses IP statiques à tous les ordinateurs d'un réseau. Pensez à ce qui se passerait si vous vouliez ajouter beaucoup  plus d'ordinateurs à votre réseau.
 
-- Users must manually allocate IP addresses
-- Users must ensure that no two computers have the same address
-- It is time-consuming to edit the configuration file on every computer
-- It is not ideal for mobile devices like laptops, which frequently join and leave the network
+- Les utilisateurs devraient configurer manuellement des adresses IP
+- Les utilisateurs devraient s'assurer qu'il n'y a pas deux  ordinateurs avec la même adresse
+- Cela prend du temps de modifier manuellement le fichier de configuration sur chaque ordinateur
+- Ce n'est pas l'idéal pour les appareils mobiles comme les ordinateurs portables, qui rejoignent et quittent fréquemment le réseau
 
-How can we make this easier?
+Comment pouvons-nous rendre tout ceci plus facile?
 
-For the majority of the lesson, it is suggested that work is carried out by students in pairs. The Ethernet hub or switch should remain completely isolated, without any Ethernet cables connecting it into the main school network.
+Pour une grande partie de cette leçon, il est préférable que le travail soit effectué par des élèves en binome. Le hub ou le switch Ethernet doivent rester complètement isolés, sans aucun câble Ethernet les reliant au réseau principal de l'école.
 
-## Learning objectives
+## Objectifs de la leçon
 
-- Understand what Dynamic Host Configuration Protocol (DHCP) is
-- Know the role it plays in the overall structure of a computer network
+- Comprendre que ce qu'est le Protocole de Configuration Dynamique de l'hôte (DHCP)
+- Connaître le rôle qu'il joue dans la structure globale d'un réseau informatique
 
-## Learning outcomes
+## A l’issue de cette leçon
 
-### All students are able to:
+### Tous les élèves seront capables de :
+- Comprendre la nécessité de disposer d'un DHCP dans un réseau informatique
+- Utiliser un serveur DHCP pour qu'un Raspberry Pi obtienne une adresse automatiquement
 
-- Understand the need for DHCP in a computer network
-- Use a DHCP server to acquire an IP address for a Raspberry Pi
+### La plupart des élèves seront capables de :
+- Comprendre la logique interne d'un serveur DHCP
 
-### Most students are able to:
+## Résumé de la leçon
 
-- Understand the internal logic of a DHCP server
+- Discussion sur le processus logique suivi par le service DHCP
+- Configuration d'un Raspberry Pi pour en faire un serveur DHCP
+- Utilisation d'autres Raspberry Pi qui obtiendront des adresses IP fournies par le serveur
+- Test du réseau
 
-## Lesson summary
+## Introduction
 
-- A discussion of the logical process followed by a DHCP service
-- Setting up one Raspberry Pi to be a DHCP server
-- Use other Raspberry Pis to get IP addresses from the server
-- Testing the network
+Tout d'abord, voyons ce qu'est un **serveur**. Un serveur est essentiellement un ordinateur dont le but principal est de fournir un service. Un serveur web, par exemple, offre le service de transmission de pages Web, images et fichiers sur Internet. Un serveur Minecraft fournit le service de mémorisation du monde en 3D, se souvenant de l'endroit où les blocs se trouvent et  permettant aux joueurs de se voir l'un l'autre. Les serveurs sont des ordinateurs qui sont dédiés à une tâche (mais ils peuvent aussi être dédiés à plus d'une tâche).
 
-## Lesson introduction
+Un ordinateur ou une application qui souhaite utiliser un serveur est souvent appelé un **client** parce qu'il se comporte comme un consommateur vis à vis d'un serveur. Les navigateurs Internet sont parfois appelés clients Internet parce qu'ils se comportent comme des clients par rtapport à un à un serveur web. Vous avez probablement entendu parler de votre jeu Minecraft comme d'un client du jeu pour la même raison.
 
-Firstly, go over the concept of a computer **server**. A server is essentially a computer whose main purpose is to provide a service. A web server, for instance, provides the service of transmitting web pages, images and files to you over the Internet. A Minecraft server provides the service of preserving the 3D world, remembering what blocks are where and allowing the players to see each other. Servers are computers that are dedicated to a task (but they can be dedicated to more than one).
+Ne serait-ce pas merveilleux si nous pouvions avoir un serveur qui prendrait la peine d'attribuer des adresses IP sur notre réseau et qui se souvinedrait de qui possède quelle adresse ?
 
-A computer or application wishing to use a server is often called a **client** because it is like a customer to the server. Web browsers are sometimes called web clients because they work like a customer to a web server. You have probably heard your copy of Minecraft referred to as the game client for the same reason.
+C'est exactement pour cela que le DHCP est prévu. DHCP signifie **D**ynamic **H**ost **C**onfiguration **P**rotocol (Protocole de Configuration Dynamique des Hôtes);  **Dynamic** Signifie en constante évolution, **Host** est juste un autre mot pour désigner un ordinateur, **Configuration** se réfère à la configuration des paramètres de votre réseau, et **Protocol** désigne un ensemble de règles qui définissent comment les choses doivent se faire.
+## Début de l'activité
 
-Wouldn't it be great if we could have a server that would take care of allocating IP addresses on our network and remembering who owns what address?
+Une démonstration sans ordinateur est un bon début pour montrer le processus logique utilisé par un serveur DHCP.
 
-This is exactly what DHCP is for. DHCP stands for Dynamic Host Configuration Protocol; **Dynamic** means constantly changing, **Host** is just another word for a computer, **Configuration** refers to configuring your network settings, and **Protocol** means a set of rules that define how to do things.
+Commencez par désigner un élève qui sera le serveur DHCP; Clui-ci possède des cartons, du papier et un crayon ou un stylo. Les autres élèves vont maintenant se comporter comme des clients/hôtes dynamiques (des ordinateurs qui changent constamment) sur le réseau.
 
-## Starter activity
+Le serveur DHCP doit suivre un un ensemble de règles; c'est ce qui représente la partie "protocole" dans le nom. L'un des hôtes/clients veut maintenant rejoindre le réseau; son nom est **Dave**. Voilà comment la conversation devrait se passer :
 
-A computing unplugged activity is quite good to get across the logical process followed by the DHCP service.
+- HOTE : "Bonjour je suis **Dave** est-ce qu'il y a un serveur DHCP par là ?"
+- DHCP : "Oui. Je suis ici, **Dave** et je peux te donner l'adresse X."
+- HOTE : "serveur DHCP, puis-je prendre l'adresse X s'il te plaît."
+- DHCP : "**Dave**, voici l'adresse X. Tu peux la garder pendant 12 heures."
 
-Begin by nominating one student to be the DHCP server; they own the set of cards, paper, and pen/pencil. The remaining students are now going to be the dynamic hosts/clients (constantly changing computers) on the network.
+Le serveur DHCP tend un carton à **Dave**. Sur ce carton figure l'adresse de **Dave**. Le serveur DHCP écrit sur son papier le nom de **Dave** ainsi que l'adresse qu'il lui a donnée, l'heure à laquelle il l'a donnée ainsi que la durée du bail (12 heures). L'heure à laquelle l'adresse a été donnée est utilisée pour calculer l'âge du bail.
 
-The DHCP server has a set of rules that must be followed; this is the protocol part of the name. One of the hosts/clients now wants to join the network; their name is **Dave**. This is how the conversation should go:
+Arrêtons-nous un moment pour voir si une partie de cette conversation était inattenduz. Lorsqu'un ordinateur rejoint un réseau, il n'a aucun moyen de savoir si un serveur DHCP est disponible, il envoie un signal (broadcast = diffusion) à l'ensemble du réseau demandant s'il y en a un. S'il y en a un qui est disponible, il répondra à l'hôte en lui proposant une adresse; l'hôte demande alors officiellement une adresse. La partie que vous pourriez ne pas avoir attendu est que l'adresse est donnée avec une durée de bail, dans ce cas 12 heures. Demandez-vous pourquoi cela existe et continuez cette leçon.
 
-- HOST: "Hello I am **Dave**, is there a DHCP server out there?"
-- DHCP: "Yes I am here, **Dave**. I can offer you address X."
-- HOST: "DHCP server, can I take address X please."
-- DHCP: "**Dave**, here is address X. You may keep it for 12 hours."
+Maintenant, supposons que **Dave** veuille quitter le réseau ou est en train de s'arrêter. La conversation ressemblerait à ceci :
 
-The DHCP server hands over an address card to **Dave** and writes his name on the paper, along with the address that was given, the time when it was given, and the length of the lease (12 hours). The time it was given is used to keep track of the age of the lease.
+- HOTE: "serveur DHCP, je suis **Dave** et je te rends mon adresse IP."
+- DHCP: "Merci **Dave**, au revoir."
 
-Stop for a moment and consider if there was any part of this conversation that was unexpected. When a computer joins a network it has no way of knowing if a DHCP server is available, so it sends out a broadcast signal to the whole network asking if one is there. If one is available it will reply to the host offering an address; the host then officially requests the address. The part you might not have expected is that the address is given with a lease time, in this case 12 hours. Consider why this might be and continue below.
+**Dave** rend alors la carte portant son adresse au serveur DHCP. Le serveur DHCP range la carte avec les autres et raye le nom de Dave sur sa feuille de papier. Cette carte d'adresse pourra maintenant être remise à un autre ordinateur/hôte qui rejoindrait le réseau.
 
-Now let's suppose **Dave** wants to leave the network or is shutting down. The conversation would go like this:
+Maintenant, considérons ce qui pourrait arriver si **Dave** n'avait pas été arrêté proprement. Supposons que le câble d'alimentation ait été soudainement débranché et qu'il n'ait pas eu l'occasion de rendre correctement son adresse au serveur DHCP; ou peut-être a-t-il décidé tout simplement de s'éteindre en gardant l'adresse! Que se passerait-il alors? Le serveur DHCP ne donnera pas deux fois la même adresse , alors on perd cette adresse pour toujours ?
 
-- HOST: "DHCP server, I am **Dave** and I am giving my IP address back to you."
-- DHCP: "Thank you **Dave**, goodbye."
+C'est ici que la durée du bail entre en jeu! L'adresse sera inutilisable, mais seulement jusqu'à l'expiration de la durée du bail. Après 12 heures voilà ce qui pourrait arriver :
+- HOTE : "Bonjour je suis **Fred** est-ce qu'il y a un serveur DHCP par là ?"
+- DHCP : "Oui. Je suis ici, **Fred** Comme il y a plus de 12h que je n'ai pas de nouvelles de **Dave** je peux te donner l'adresse X."
+- HOTE : "serveur DHCP, puis-je prendre l'adresse X s'il te plaît."
+- DHCP : "**Fred**, voici l'adresse X. Tu peux la garder pendant 12 heures."
 
-**Dave** then hands his address card back to the DHCP server. The DHCP server puts the card back with the others and crosses his name out from the piece of paper. That address card could now be given out to another computer/host that joins the network.
+Le serveur DHCP fait un nouveau carton avec cette même adresse et le tend à **Fred**, raye le nom le nom **Dave**  de la liste, et le remplace par **Fred**.
 
-Now consider what might happen if **Dave** didn't shut down cleanly. Suppose the power cable was suddenly unplugged and he didn't get a chance to neatly give his address back to the DHCP server; or perhaps he decided to just run off with the address! What would happen then? The DHCP server won't give out the same address twice, so would the address be forever lost in limbo?
+Voilà donc comment ce problème est traité; toutes les adresses sont attribuées avec un délai déterminé afin que dans le cas d'un hôte qui tombe brutalement en panne ou quitte soudain le réseau, le serveur DHCP puisse petit à petit reprendre possession de ces adresses au fur et à mesure que leurs durées de location expirent.
 
-This is where the lease time comes in! The address will be in limbo but only until the lease time expires. After 12 hours goes by this might happen:
+Une variante de cette conversation pourrait être :
 
-- HOST: "Hello I am **Fred**, is there a DHCP server out there?"
-- DHCP: "Yes I am here **Fred**. It has been over 12 hours since I last heard from **Dave** so I can can offer you his old address X."
-- HOST: "DHCP server, can I take address X please."
-- DHCP: "**Fred**, here is address X. You may keep it for 12 hours."
+- HOTE : "serveur DHCP je suis **Dave**, 12 heures se sont écoulées alors est-ce que je peux renouveler l'adresse X s'il te plaît ?"
+- DHCP: D'accord **Dave** tu peux garder l'adresse pendant 12 heures supplémentaires.
 
-The DHCP server makes a new card with that address on, hands it to **Fred**, crosses the name **Dave** off the list, and replaces it with **Fred**.
+Le serveur DHCP note ensuite sur son papier l'heure à laquelle l'adresse a été de nouveau accordée à **Dave**. Notez que tous les serveurs DHCP n'utiliseront pas un bail de 12 heures; la durée pourra être plus ou moins longue en fonction du serveur. Maintenant, si **Fred** veut rejoindre le réseau, il obtiendra une adresse différente de celle de **Dave**.
 
-So that is how this problem is dealt with; all addresses are given out with a time limit attached to them so that in the event of hosts crashing or suddenly leaving the network, the DHCP server will slowly repossess those addresses as their lease times expire.
+## Activité pratique principale
 
-An alternative version of this conversation might be:
+Tout d'abord, sélectionnez l'un des Raspberry Pi qui sera le serveur DHCP. Ce peut être une bonne idée de l'identifier en collant une étiquette dessus e munir d'un auto mettre un autocollant sur elle ou en le déplaçant vers un autre endroit pour éviter toute confusion par la suite. Nous allons devoir installer un logiciel sur ce Raspberry Pi, donc pour cette première partie, connectez le à un autre réseau local pour accéder à Internet.
 
-- HOST: "DHCP server I am **Dave**, 12 hours have gone by so can I renew address X please?"
-- DHCP: **Dave** you may keep the address for another 12 hours.
+### A faire sur le Raspberry Pi serveur uniquement
 
-The DHCP server then updates the time at which the address was given to Dave on the paper. Note that not all DHCP servers will use a 12 hour lease; it can be either longer or shorter depending on the server in question. Now if **Fred** wants to join the network, he will be given a different address to **Dave**.
+** Note :** Comme un seul Raspberry Pi sera configuré en serveur DHCP, il vaut mieux que cette partie de l'activité soit réalisée par une seule personne. Les autres élèves sont des observateurs. On n'a pas besoin de plus d'un serveur DHCP; en fait, s'il y en a plus d'un, cela peut causer des problèmes !
 
-## Main practical activity
+Entrez les commandes suivantes:
 
-Firstly, select one Raspberry Pi to act as the DHCP server. It can be a good idea to either put a sticker on it or move it to a more prominent place to avoid any confusion later on. We'll need to install some software on this Pi, so for this first part you'll need to connect it to another LAN for internet access.
-
-### On the server Pi only
-
-**Note:** Because only one Raspberry Pi will be the DHCP server, this part of the activity is best carried out by one person with all the other students observing. We do not need more than one DHCP server; in fact, more than one can cause problems!
-
-Enter the following commands:
-
-```bash
+`` `bash
 sudo apt-get update
 sudo apt-get install dnsmasq
-```
+`` `
 
-Once that has finished you can disconnect from the LAN with internet access and return to the original practice hub/switch.
+Une fois que c'est fini vous pouvez vous déconnecter du réseau local qui accède à Internet et reconnecter le Raspberry Pi au hub/switch utilisé pour cette partie pratique
 
-By convention, most DHCP servers have a static IP address which will be the first or lowest number in the IP address space for the network. For example, most private networks use a local IP address space of `192.168.0.X`, where `X` is a number that is different for each device. Following this convention, our DHCP server will have a static IP address of `192.168.0.1`; note the `.1` at the end. The IP addresses it can serve out will then range from `192.168.0.2`, `.3`, `.4`, and so on up to `.254`.
+Par convention, la plupart des serveurs DHCP ont une adresse IP statique qui est le premier ou le plus petit nombre dans l'espace d'adressage IP du réseau. Par exemple, la plupart des réseaux privés utilisent un espace d'adressage IP local de `192.168.0.X`, où` X` est un nombre qui est différent pour chaque périphérique. Si on suit cette convention, notre serveur DHCP aura une adresse IP statique de `192.168.0.1`; Notez le `.1` à la fin. Les adresses IP qu'il pourra donner ensuite démarreront à `192.168.0.2`,` .3`, `.4`, et ainsi de suite jusqu'à` .254`.
 
-So first, let’s make the DHCP server Raspberry Pi have a static IP address as per this convention. To configure this we must edit the network interfaces file again. Enter the following command:
+Pour respecter cette convention, commençons par donner une adresse statique au Raspberry Pi qui sera serveur DHCP. Pour configurer cela, nous devons modifier à nouveau le fichier d'interface réseau. Entrez la commande suivante :
 
 ```bash
 sudo nano /etc/network/interfaces
 ```
 
-In this file `eth0` refers to the Raspberry Pi Ethernet port and `wlan0` refers to a wireless dongle if you are using one. Find the following line:
+Dans ce fichier `eth0` se réfère au port Ethernet Raspberry Pi et` wlan0` se réfère à un dongle sans fil si vous en utilisez un. Trouvez la ligne suivante :
 
 ```bash
 iface eth0 inet dhcp
 ```
 
-This line tells the Raspberry Pi to try and get an IP address from a DHCP server for the interface `eth0`. So essentially this is making it a DHCP **client**, but we want to make this a DHCP **server** so this line must be disabled. Put a hash `#` character at the start of the line and add the following four lines below to configure the static IP address, just as you did in previous exercises:
+Cette ligne indique au Raspberry Pi qu'il doit essayer d'obtenir une adresse IP d'un serveur DHCP pour l'interface `eth0`. Donc cela en fait essentiellement un **client** DHCP, mais nous voulons en faire un serveur **DHCP** donc cette ligne doit être désactivée. Mettez un dièse `#` au début de la ligne et ajoutez ensuite les quatre lignes suivantes pour configurer l'adresse IP statique, comme vous l'avez fait dans les exercices précédents:
 
 ```
 # iface eth0 inet dhcp
@@ -131,15 +128,15 @@ address 192.168.0.1
 netmask 255.255.255.0
 ```
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.  Now enter the following command to restart the networking service on the Raspberry Pi:
+Appuyez sur `Ctrl - O` puis sur `Entrée` Pour enregistrer,  puis sur `Ctrl - X` afin de quitter nano. Maintenant, entrez la commande suivante pour redémarrer le service réseau du Raspberry Pi :
 
 ```bash
 sudo service networking restart
 ```
 
-This Raspberry Pi will now always have the IP address `192.168.0.1`. You can double-check this by entering the command `ifconfig`; the IP address should be shown on the second line just after `inet addr`.
+Ce Raspberry Pi sera maintenant toujours à l'adresse IP `192.168.0.1`. Vous pouvez confirmer cela en entrant la commande `ifconfig`; l'adresse IP doit être affichée sur la deuxième ligne juste après `inet addr`.
 
-Next we need to configure the DHCP server software, `dnsmasq`, that was installed earlier. We are going to explicitly specify a configuration file for the `dnsmasq` service, so let’s first make a backup of the default config file and then save our one in its place. Enter the following commands:
+Ensuite, nous allons configurer le logiciel serveur DHCP, `dnsmasq`, qui a été installé auparavant. Nous allons définir explicitement un fichier de configuration pour le service `dnsmasq`, mais nous allons d'abord sauvegarder le fichier de configuration par défaut, puis mettre le notre à sa place. Entrez les commandes suivantes :
 
 ```bash
 cd /etc
@@ -147,32 +144,32 @@ sudo mv dnsmasq.conf dnsmasq.default
 sudo nano dnsmasq.conf
 ```
 
-You should now be editing a blank file. Copy and paste the following into it:
+Vous devriez maintenant être en train de modifier un fichier vide. Copiez et collez ce qui suit dans le fichier :
 
 ```
-interface=eth0
-dhcp-range=192.168.0.2,192.168.0.254,255.255.255.0,12h
+interface = eth0
+dhcp-range = 192.168.0.2,192.168.0.254,255.255.255.0,12h
 ```
 
-The first line tells `dnsmasq` to listen for DHCP requests on the Ethernet port of the Pi. The second line specifies the *range* of IP addresses that can be given out; notice the `12h` at the end of the line which specifies the lease time.
+La première ligne indique à `dnsmasq` qu'il doit écouter les requêtes DHCP sur le port Ethernet du Raspberry Pi. La deuxième ligne indique la *plage* d'adresses IP qui peuvent être distribuées; remarquez le `12h` à la fin de la ligne qui précise la durée du bail.
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano. Before we activate the server, make sure the DHCP server Pi is the only device connected to the practice hub/switch; unplug all other Ethernet connections. Enter the following command to restart the `dnsmasq` service:
+Appuyez sur `Ctrl - O` puis` Entrée` pour enregistrer le fichier, puis sur `Ctrl - X` pour quitter nano. Avant d'activer le serveur, assurez-vous que le Raspberry Pi serveur DHCP est le seul appareil connecté au hub/switch ; débranchez toutes les autres connexions Ethernet. Entrez la commande suivante pour redémarrer le service `dnsmasq`:
 
-```bash
+`` `bash
 sudo service dnsmasq restart
-```
+`` `
 
-The DHCP service is now active and listening for requests from client host computers.
+Le service DHCP est maintenant actif et écoute les requêtes demandes des ordinateurs clients.
 
-### On all the remaining client Pis
+### Sur tous les autres clients Raspberry Pi
 
-Before reconnecting any remaining client Pis to the hub/switch, check that their `/etc/network/interfaces` files are configured to get an IP address from a DHCP server. Enter the following command:
+Avant de rebrancher les Raspberry Pi clients au hub/switch, vérifiez que leurs fichiers `/etc/network/interfaces` sont configurés pour obtenir une adresse IP depuis un serveur DHCP. Entrez la commande suivante :
 
 ```bash
-sudo nano /etc/network/interfaces
+sudo nano/etc/network/interfaces
 ```
 
-Ensure that a static IP address is **not** specified and check the `iface eth0 inet dhcp` line is there; an example is below.
+Vérifiez qu'une adresse IP statique n'est **pas** spécifiée et contrôlez la présence de la ligne `iface eth0 inet dhcp` ; voici un exemple.
 
 ```
 iface eth0 inet dhcp
@@ -182,27 +179,26 @@ iface eth0 inet dhcp
 # netmask 255.255.255.0
 ```
 
-Press `Ctrl – O` then `Enter` to save followed by `Ctrl – X` to quit nano.
+Appuyez sur `Ctrl - O` puis sur `Entrée` pour enregistrer le fichier, puis sur `Ctrl - X` pour quitter nano.
 
-Restart the networking service on the clients with the command `sudo service networking restart`; you can then go ahead and start reconnecting them to the hub/switch. They should immediately acquire an IP address from the DHCP server.
+Redémarrez le service réseau sur les clients avec la commande `sudo service networking restart`; vous pouvez ensuite continuer et les reconnecter au hub/switch. Ils doivent immédiatement récupérer une adresse IP depuis le serveur DHCP.
 
-Check this by using the command `ifconfig` again; the IP addresses given out should be randomly selected from the range specified on the server.
+Vérifiez le en utilisant la commande `ifconfig` à nouveau ; les adresses IP indiquées devraient être situées dans la plage spécifiée sur le serveur.
 
-### Test the network
+### Test du réseau
 
-Once everyone has an IP address the network should work as expected. Test it using your chat program or by playing Minecraft together. Ensure that everyone can successfully ping the DHCP server with the command `ping 192.168.0.1`, and that they can ping each other with the command `ping 192.168.0.X` (where X is the fourth part of their IP address). The server should also be able to ping the clients.
+Une fois que tout le monde a une adresse IP le réseau devrait fonctionner comme prévu. Testez-le en utilisant votre programme de chat ou en jouant à Minecraft. Assurez-vous que tout le monde peut réussir à pinger le serveur DHCP avec la commande `ping 192.168.0.1`, et qu'ils peuvent se pinger les uns les autres avec la commande` ping 192.168.0.X` (où X est la quatrième partie de leur adresse IP). Le serveur doit également pouvoir faire un ping sur clients.
 
-### One step further
+### Aller plus loin
+Si vous voulez aller plus loin et d'observer la communication entre le serveur DHCP et les clients, les commandes suivantes peuvent être utilisées sur les Raspberry Pi **client**.
 
-If you want to take it one step further and observe the communication between the DHCP server and the clients, the following commands can be used on the **client** Pis.
-
-Firstly, to shut down the Ethernet interface and give back your IP address to the DHCP server, enter this command:
+Tout d'abord, pour arrêter l'interface Ethernet et rendre votre adresse IP au serveur DHCP, entrez cette commande:
 
 ```bash
 sudo ifdown eth0
 ```
 
-You should see output similar to the text below. Note the `DHCPRELEASE` line; this is the IP address being surrendered to the server.
+Vous devriez voir quelque chose qui ressemble au texte ci-dessous. Notez la ligne `DHCPRELEASE`; c'est ici que l'adresse IP est remise au serveur.
 
 ```
 Listening on LPF/eth0/b8:27:eb:aa:bb:cc
@@ -211,13 +207,13 @@ Sending on   Socket/fallback
 DHCPRELEASE on eth0 to 192.168.0.1 port 67
 ```
 
-Next, use the following command to start up the Ethernet interface and get an IP address from the DHCP server:
+Ensuite, utilisez la commande suivante pour redémarrer l'interface Ethernet et obtenir une adresse IP du serveur DHCP :
 
 ```bash
 sudo ifup eth0
 ```
 
-You should see output similar to the text below. Note the `DHCPDISCOVER`, `DHCPREQUEST`, `DHCPOFFER`, and `DHCPACK` lines. See how they correspond to what was being spoken during the starter activity?
+Vous devriez voir une sortie similaire au texte ci-dessous. Notez les lignes `DHCPDISCOVER`,` DHCPREQUEST`, `DHCPOFFER`, et`DHCPACK`. Faites le rapprochement avec ce qui a été vu au début de l'activité. Pouvez vous identifier la phrase à laquelle chacune correspond ?
 
 ```
 Listening on LPF/eth0/b8:27:eb:aa:bb:cc
@@ -230,20 +226,20 @@ DHCPACK from 192.168.0.1
 bound to 192.168.0.X -- renewal in 40000 seconds.
 ```
 
-In normal practice you don’t need to keep using these commands because the same thing automatically happens when the Raspberry Pi boots up, shuts down or has its Ethernet port connected to another device.
+En utilisation normale, vous ne devez pas utiliser ces commandes parce que la même chose se produit automatiquement lorsque le Raspberry Pi démarre, s'arrête ou que son port Ethernet est connecté à un autre appareil.
 
-## Plenary
+## Résumé
 
-Students can now be invited to discuss similarities in the practical exercise to the starter activity.
+Vous pouvez maintenant inviter les élèves à discuter des similitudes entre l'exercice pratique et l'activité de démarrage.
 
-One question that should be brought up is how the DHCP server can identify each computer that talks to it. In the starter activity the client host computer said “I am Dave” to the DHCP server **before** it had been given an IP address. The DHCP server then wrote **Dave** on the piece of paper against the IP address that was given. What is the equivalent of this for a real computer?
+Une question qui devrait être soulevée est de savoir comment le serveur DHCP peut identifier chaque ordinateur qui s'adresse à lui. Dans l'activité de démarrage, l'ordinateur client a indiqué : "Je suis Dave" au serveur DHCP **avant** d'avoir reçu une adresse IP. Le serveur DHCP a ensuite écrit **Dave** sur son papier en face de l'adresse IP qu'il lui a donnée. Quel est l'équivalent de ceci pour un véritable ordinateur ?
 
-The answer is the **MAC** address (sometimes called the physical address). MAC stands for Media Access Control; it is a unique ID that is burnt into the hardware of an Ethernet device by the manufacturer. All network devices, including those using WiFi and Bluetooth, have a MAC. A MAC address is six bytes long and is often shown as six hexadecimal numbers separated by colons or dashes like this: `01:23:45:67:89:ab`.
+La réponse est l'adresse **MAC** (parfois appelée l'adresse physique). MAC signifie Media Access Control ; c'est un identifiant unique qui est inscrit dans le matériel d'un  périphérique Ethernet par le fabricant. Tous les périphériques réseau, y compris ceux qui utilisent le WiFi et le Bluetooth, possèdent une adresse MAC. Une adresse MAC fait six octets de long et est souvent représenté comme six nombres hexadécimaux séparés par des virgules ou des tirets comme ceci: `01:23:45:67:89:ab`.
 
-The MAC address of a Raspberry Pi can be shown using the `ifconfig` command; look under `eth0` and on the first line just after `HWaddr` (hardware address). The MAC address will be something like `b8:27:eb:aa:bb:cc`. A Raspberry Pi MAC address always starts with `b8:27:eb`. So it’s actually the MAC address of the client host computer that the DHCP server stores to keep a record of who owns which IP address.
+L'adresse MAC d'un Raspberry Pi peut être montrée en utilisant la commande `ifconfig`; regardez sous `eth0` et sur la première ligne juste après` HWaddr` (adresse matérielle). L'adresse MAC ressemblera à quelque chose comme `B8:27:eb:aa:bb:cc`. Une adresse MAC de Raspberry Pi commence toujours par `B8:27:eb`. En fait, c'est l'adresse MAC de l'ordinateur client que le serveur DHCP enregistre pour garder une trace de qui possède quelle adresse IP.
 
-Take another look at the `ifup` and `ifdown` command output from earlier!
+Regardez également ce que envoient sur l'écranles commandes `ifup` et `ifdown` vues plus haut !
 
-## Homework
+## Travail à la maison
 
-Homework will be an open challenge to find a device in the school or family home that has a built-in DHCP server. Write 100 words about why this DHCP server is being used in this place.
+Ce sera un concours lancé pour trouver un dispositif à la maison ou à l'école qui est doté d'un serveur DHCP. Écrivez 100 mots sur les raisons de la présence de ce serveur DHCP  en ce lieu.

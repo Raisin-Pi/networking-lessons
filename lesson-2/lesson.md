@@ -18,7 +18,7 @@ Les élèves seront conscients de l'importance et de la généralisation des ré
 - Utiliser un programme simple pour contrôler le matériel au travers d'un réseau
 
 
-### La plupart des élèves seront capables de:
+### La plupart des élèves seront capables de :
 
 - Modifier un programme pour lui faire faire quelque chose de différent et d'utile
 
@@ -48,6 +48,6 @@ Cela peut être fait sur papier ou par glisser-déposer sur un tableau interacti
 Demandez à chaque groupe de se lever et expliquer les changements qu'ils ont fait à leur programme et comment ils l'ont fait. Affichez leur code sur l'écran si vous en avez la possibilité, et demandez-leur d'expliquer la logique et la syntaxe de leurs modifications.
 
 ## A faire à la maison
-1.	Montrez aux élèves la source de la citation [50 milliards d'Objets](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342)".
+1.	Montrez aux élèves la source de la citation "[50 milliards d'Objets](http://newsroom.cisco.com/feature-content?type=webcontent&articleId=1208342)".
 1.	Demandez-leur de faire une recherche et de préparer un exposé rapide (1 minute) pour la prochaine leçon, montrant soit que l'IdO est une bonne chose soit qu'il est une mauvaise chose (pas de réponse mitigée). S'ils veulent réaliser une présentation avec des diapositives ils ne pourront employer que des images, pas de mots.
 1.	Lors de la prochaine leçon choisissez plusieurs élèves au hasard, demandez leur de se lever et donnez leur la parole, chacun disposera d'un temps égal pour présenter ses arguments. Les votes de la classe désigneront le vainqueur.
