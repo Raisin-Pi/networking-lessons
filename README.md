@@ -42,7 +42,7 @@ Les leçons utilisent le langage de programmation Python et abordent donc plusie
 
 Il est suggéré que le travail soit effectué individuellement ou par binôme sur un Raspberry Pi. Chaque Raspberry Pi se connecte à un autre Pi dans les premières leçons et vous aurez besoin d'un nombre pair de Raspberry Pi. Chaque élève ou binôme devrait avoir accès au matériel suivant:
 
-- Un Raspberry Pi avec la configurartion suivante :
+- Un Raspberry Pi avec la configuration suivante :
   - Une carte SD avec la dernière version de NOOBS et Raspbian installé
   - `network.py` et `thing-client.py` copiés sur la carte SD
   - Un clavier, une souris et un écran
