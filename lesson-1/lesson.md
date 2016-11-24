@@ -53,7 +53,7 @@ Cette introduction est un ensemble d'informations rapides pour initier les élè
 
 Les concepts que les élèves ont appris dans le travail à faire à la maison seront utilisés et consolidés, lorsqu'ils réaliseront les travaux pratiques.
 
-1. Les élèves doivent mettre en place le réseau et envoyer des messages à l'aide de la fiche de travaux pratiques.Students should set up the network and send messages using the [Fiche de Travaux Pratiques - Elève](worksheet.md).
+1. Les élèves doivent mettre en place le réseau et envoyer des messages à l'aide de la [Fiche de Travaux Pratiques - Elève](worksheet.md).
 
 1. **Facultatif**: Si vous réutilisez les cartes SD sur le réseau, les élèves devront annuler les modifications qu'ils ont faites précédemment dans le fichier `interfaces`. Demandez-leur de le faire en suivant la section «Nettoyage» de la feuille de travaux pratiques.
 
